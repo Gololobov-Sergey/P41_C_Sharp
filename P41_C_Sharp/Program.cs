@@ -11,6 +11,37 @@ namespace P41_C_Sharp
             return a % 2 == 0;
         }
 
+
+        static void Func(ref int[] arr, ref int i, out int b)
+        {
+            foreach (var x in arr)
+            {
+                Console.WriteLine(x + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine(i);
+
+            arr = new int[] { 6, 76, 8 };
+            i++;
+
+            foreach (var x in arr)
+            {
+                Console.WriteLine(x + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine(i);
+
+            b = 999;
+        }
+
+        static int Sum(params object[] a)
+        {
+            int res = 0;
+            //foreach (var x in a)
+            //    res += x;
+            return res;
+        }
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -21,18 +52,59 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+            // 23.06.2025
+
+
+            BirthDay birthDay = new BirthDay(1976, 5, 20);
+            Console.WriteLine(birthDay.GetDayOfWeek());
+            Console.WriteLine(birthDay.GetDayOfWeek(2025));
+
+            //Point point = new Point(12,34, 200);
+            
+            //Point point1 = new Point();
+            //point1.Print();
+
+
+            //Console.WriteLine(Point.GetCount());
+
+            //Console.WriteLine(Sum(1,"2",true, new Point()));
+
+
+            //int[] arr = { 1, 2, 3 };
+            //int i = 100;
+            
+            //Func(ref arr, ref i, out int b);
+
+            //foreach (var x in arr)
+            //{
+            //    Console.WriteLine(x + " ");
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine(i);
+            //Console.WriteLine(b);
+
+
+            //Int32.TryParse(Console.ReadLine(), out int res);
+            //Console.WriteLine(res);
+
+
+            //foreach (var item in Enum.GetValues(typeof(DayOfWeek)))
+            //{
+            //    Console.WriteLine(item);
+            //}
+
 
             // 21.06.2025
 
-            string? str = Console.ReadLine();
+            //string? str = Console.ReadLine();
 
-            var words = str.Split();
-            for (int i = 0; i < words.Length; i++)
-            {
-                words[i] = new string(words[i].Reverse().ToArray());
-            }
+            //var words = str.Split();
+            //for (int i = 0; i < words.Length; i++)
+            //{
+            //    words[i] = new string(words[i].Reverse().ToArray());
+            //}
 
-            Console.WriteLine(String.Join(' ', words));
+            //Console.WriteLine(String.Join(' ', words));
 
 
 
