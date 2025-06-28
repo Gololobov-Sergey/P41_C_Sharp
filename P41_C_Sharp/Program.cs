@@ -2,14 +2,14 @@
 
 using System.Text;
 
+using MyClasses;
+using F = MyClasses.Functions;
+
 namespace P41_C_Sharp
 {
     internal class Program
     {
-        static bool isEven(int a)
-        {
-            return a % 2 == 0;
-        }
+        
 
 
         static void Func(ref int[] arr, ref int i, out int b)
@@ -52,15 +52,77 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+
+            // 28.06.2025
+
+
+            //ToDoList toDoList = new ToDoList();
+            //toDoList.Add(new Task { Name = "Exam1", Description = "Exam on C#", Status = TaskStatus.InProgress });
+            //toDoList.Add(new Task { Name = "Exam2", Description = "Exam on C++", Status = TaskStatus.NotStarted });
+            //toDoList.Add(new Task { Name = "Exam3", Description = "Exam on SQL", Status = TaskStatus.NotStarted });
+            //toDoList.Add(new Task { Name = "Exam4", Description = "Exam on EF Core", Status = TaskStatus.Deferred });
+
+            //toDoList.PrintTasks(TaskStatus.NotStarted);
+
+            //toDoList.ChangeStatus(TaskStatus.Completed, 0);
+            //toDoList.PrintTasks(TaskStatus.Completed);
+
+            // - -- ++
+            // + - * / % 
+
+
+            // +=, = , . , ?: , new , sizeof , is , as , 
+
+
+            //Point2D p = new Point2D { X = 5, Y = 5 };
+            //Point2D p2 = -p;
+            //p2.Print();
+            //(p2++).Print();
+            //(++p2).Print();
+
+            //Point2D p3 = p + p2;
+            //p3.Print();
+
+            //p += p2;
+            //p.Print();
+
+            //p += 10;
+            //p.Print();
+
+            //p = 10 + p;
+
+
+            Apple a1 = new Apple { Radius = 10, Color = ConsoleColor.Green };
+            Apple a2 = new Apple { Radius = 15, Color = ConsoleColor.Red };
+            Kompot k = a1 + a2;
+
+            Apple a3 = new Apple { Radius = 5, Color = ConsoleColor.Yellow };
+            k += a3;
+
+
+
+            //Student student = new Student
+            //{
+            //    LastName = "Ivanov",
+            //    FirstName = "Ivan",
+            //    BirthDate = new DateTime(2000, 1, 1),
+            //    Id = 1
+            //};
+
+            //Student student2 = student;
+
+            //F.Func.isEven(2);
+
+
             // 23.06.2025
 
 
-            BirthDay birthDay = new BirthDay(1976, 5, 20);
-            Console.WriteLine(birthDay.GetDayOfWeek());
-            Console.WriteLine(birthDay.GetDayOfWeek(2025));
+            //BirthDay birthDay = new BirthDay(1976, 5, 20);
+            //Console.WriteLine(birthDay.GetDayOfWeek());
+            //Console.WriteLine(birthDay.GetDayOfWeek(2025));
 
             //Point point = new Point(12,34, 200);
-            
+
             //Point point1 = new Point();
             //point1.Print();
 
@@ -72,7 +134,7 @@ namespace P41_C_Sharp
 
             //int[] arr = { 1, 2, 3 };
             //int i = 100;
-            
+
             //Func(ref arr, ref i, out int b);
 
             //foreach (var x in arr)
