@@ -89,6 +89,32 @@ namespace P41_C_Sharp
                 Console.WriteLine("No ingradients in kompot.");
             }
         }
+
+
+        public string this[string type, int index]
+        {
+            get
+            {
+                if (type == "fruits")
+                {
+                    return $"Apple with radius {Apples[index].Radius} and color {Apples[index].Color}";
+                }
+                else if (type == "ingradients")
+                {
+                    return ingradients[index];
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            
+        }
+
+        public static implicit /*explicit*/ operator int(Kompot point)
+        {
+            return 1;
+        }
     }
 }
 

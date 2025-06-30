@@ -1,8 +1,8 @@
 ﻿
 
-using System.Text;
-
 using MyClasses;
+using System.Numerics;
+using System.Text;
 using F = MyClasses.Functions;
 
 namespace P41_C_Sharp
@@ -53,27 +53,48 @@ namespace P41_C_Sharp
 
             // 30.06.2025
 
-            Point2D p = new Point2D { X = 5, Y = 5 };
-            if (p && p)
-            {
-                Console.WriteLine("Point is empty");
-            }
-            else
-            {
-                Console.WriteLine("Point is not empty");
-            }
+            // Створіть клас Player із властивостями Name, Score і Level. 
+            // Властивість Score має автоматично збільшувати рівень гравця(Level), 
+            // коли кількість очок досягає певного порога.
+            // Використовуйте автоматичні властивості для полів Name і Score. 
+            // Реалізуйте логіку в set-аксесорі властивості Score, щоб перевіряти 
+            // необхідність підвищення рівня гравця.
 
-            float f = p;
 
-            if(p == 3.3)
-            {
+            // Створіть клас Currency, який виконує конвертацію між різними 
+            // валютами(наприклад, USD, EUR, GBP). Реалізуйте оператори явного і 
+            // неявного перетворення для конвертації між валютами.
+            // Використовуйте властивості для зберігання назви валюти 
+            // та її курсу обміну. Реалізуйте як явні(explicit), 
+            // так і неявні(implicit) оператори перетворення.
 
-            }
+            Currency curr = new Currency("USD", 42.550m, 1000);
+            decimal sum = curr;
+            Currency curr2 = (Currency)curr;
 
-            Apple a = (Apple)p;
 
-            p[0] = 10;
-            Console.WriteLine(p["1"]);
+
+            //Point2D p = new Point2D { X = 5, Y = 5 };
+            //if (p && p)
+            //{
+            //    Console.WriteLine("Point is empty");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Point is not empty");
+            //}
+
+            //float f = p;
+
+            //if(p == 3.3)
+            //{
+
+            //}
+
+            //Apple a = (Apple)p;
+
+            //p[0] = 10;
+            //Console.WriteLine(p["1"]);
 
             // 28.06.2025
 
@@ -119,20 +140,22 @@ namespace P41_C_Sharp
             //p = 10 + p;
 
 
-            Apple a1 = new Apple { Radius = 10, Color = ConsoleColor.Green };
-            Apple a2 = new Apple { Radius = 15, Color = ConsoleColor.Red };
-            Kompot k = a1 + a2;
-            k.Print();
+            //Apple a1 = new Apple { Radius = 10, Color = ConsoleColor.Green };
+            //Apple a2 = new Apple { Radius = 15, Color = ConsoleColor.Red };
+            //Kompot k = a1 + a2;
+            //k.Print();
 
-            Apple a3 = new Apple { Radius = 5, Color = ConsoleColor.Yellow };
-            k += a3;
-            
-            k += "water 1l";
-            k += "sugar 200g";
+            //Apple a3 = new Apple { Radius = 5, Color = ConsoleColor.Yellow };
+            //k += a3;
 
-            Console.WriteLine(k["fruits", 0]);
-            Console.WriteLine(k["ingradients", 1]);
-            k.Print();
+            //k += "water 1l";
+            //k += "sugar 200g";
+
+            //k.Print();
+
+            //Console.WriteLine(k["fruits", 0]);
+            //Console.WriteLine(k["ingradients", 1]);
+
 
 
             //Student student = new Student
