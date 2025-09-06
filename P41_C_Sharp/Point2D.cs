@@ -8,6 +8,8 @@ namespace P41_C_Sharp
 {
     internal class Point2D
     {
+        protected int id;
+
         public int X { get; set; }
         public int Y { get; set; }
 
@@ -145,6 +147,16 @@ namespace P41_C_Sharp
                 else if (index == "1") Y = value;
                 else throw new IndexOutOfRangeException("Index must be 0 or 1.");
             }
+        }
+    }
+
+    class Point3D : Point2D
+    {
+        public int Z { get; set; }
+        public new void Print()
+        {
+            Console.WriteLine($"X = {X}, Y = {Y}, Z = {Z}");
+            id++;
         }
     }
 }

@@ -51,6 +51,42 @@ namespace P41_C_Sharp
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
 
+            // 06.09.2025
+
+            Point3D p3d = new Point3D { X = 10, Y = 20, Z = 30 };
+            p3d.Print();
+
+            Point2D p2d = new Point2D { X = 10, Y = 15 };
+            Console.WriteLine(p2d);
+
+            //Human h = new Human("Ivan", 30);
+            //Console.WriteLine(h);
+
+            Employee e = new Employee("Petro", 35, 1000);
+            Console.WriteLine(e);
+
+            Array array = new int[10];
+            
+
+            Human m = new Manager("Stepan", 40, 2000, 500);
+            Console.WriteLine(m);
+
+            //Manager mm = (Manager)m;
+            //mm.Print();
+
+            //Manager? mmm = m as Manager;
+            //if (mmm != null)
+            //{
+            //    mmm.Print();
+            //}
+
+
+            //if(m is Manager)
+            //{
+            //    ((Manager)m).Print();
+            //    (m as Manager).Print();
+            //}
+
             // 30.06.2025
 
             // Створіть клас Player із властивостями Name, Score і Level. 
@@ -68,9 +104,9 @@ namespace P41_C_Sharp
             // та її курсу обміну. Реалізуйте як явні(explicit), 
             // так і неявні(implicit) оператори перетворення.
 
-            Currency curr = new Currency("USD", 42.550m, 1000);
-            decimal sum = curr;
-            Currency curr2 = (Currency)curr;
+            //Currency curr = new Currency("USD", 42.550m, 1000);
+            //decimal sum = curr;
+            //Currency curr2 = (Currency)curr;
 
 
 
