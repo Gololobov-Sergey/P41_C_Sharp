@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -38,7 +39,7 @@ namespace P41_C_Sharp
 
     }
 
-    /*sealed*/ class Employee : Human
+    /*sealed*/ class Employee : Human, IWork
     {
         int id;
         int salary;
@@ -67,9 +68,16 @@ namespace P41_C_Sharp
         {
             Console.WriteLine("I`m Employee");
         }
+
+        public bool IsWorking => true;
+
+        public void Work()
+        {
+            Console.WriteLine("Я просто працівник");
+        }
     }
 
-    class Manager : Employee
+    class Manager : Employee, IWork
     {
         int id;
         int bonus;
@@ -77,7 +85,8 @@ namespace P41_C_Sharp
         {
             bonus = b;
         }
-       
+
+        public bool IsWorking => true;
 
         override public string ToString()
         {
@@ -87,6 +96,11 @@ namespace P41_C_Sharp
         override public void whoAmI()
         {
             Console.WriteLine("I`m Manager");
+        }
+
+        public void Work()
+        {
+            Console.WriteLine("Я працюю менеджером");
         }
     }
 }

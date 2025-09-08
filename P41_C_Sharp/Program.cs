@@ -1,9 +1,9 @@
 ﻿
 
-using MyClasses;
+
 using System.Numerics;
 using System.Text;
-using F = MyClasses.Functions;
+
 
 namespace P41_C_Sharp
 {
@@ -42,6 +42,17 @@ namespace P41_C_Sharp
             return res;
         }
 
+        static void WorkInfo(IWork m)
+        {
+            m.Work();
+        }
+
+        static void Output(IOutput obj)
+        {
+            obj.Show();
+            obj.Show("Info");
+        }
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -51,25 +62,71 @@ namespace P41_C_Sharp
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
 
+
+            // 08.09.2025
+
+
+            Group group = new Group();
+            Console.WriteLine("Group");
+            Console.WriteLine("----------------------------------------");
+            foreach(Student s in group)
+            {
+                Console.WriteLine(s);
+            }
+
+            group.Sort(new DateComparer());
+
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            foreach (Student s in group)
+            {
+                Console.WriteLine(s);
+            }
+
+            //Inter2 inter = new Inter2();
+            //(inter as IAA).Show();
+
+            //IAA interA = new Inter2();
+            //interA.Show();
+
+            //IBB interB = new Inter2();
+            //interB.Show();
+
+            //ICC interC = new Inter2();
+            //interC.Show();
+
+
+
+            //Manager manager = new Manager("Stepan", 40, 2000, 500);
+            ////manager.Work();
+            //WorkInfo(manager);
+
+            //Employee e = new Employee("Petro", 35, 1000);
+            //WorkInfo(e);
+
+
+            //IOutput output = new Currency("USD", 42.550m, 1000);
+            //Output(output);
+
             // 06.09.2025
 
-            Point3D p3d = new Point3D { X = 10, Y = 20, Z = 30 };
-            p3d.Print();
+            //Point3D p3d = new Point3D { X = 10, Y = 20, Z = 30 };
+            //p3d.Print();
 
-            Point2D p2d = new Point2D { X = 10, Y = 15 };
-            Console.WriteLine(p2d);
+            //Point2D p2d = new Point2D { X = 10, Y = 15 };
+            //Console.WriteLine(p2d);
 
-            //Human h = new Human("Ivan", 30);
-            //Console.WriteLine(h);
+            ////Human h = new Human("Ivan", 30);
+            ////Console.WriteLine(h);
 
-            Employee e = new Employee("Petro", 35, 1000);
-            Console.WriteLine(e);
+            //Employee e = new Employee("Petro", 35, 1000);
+            //Console.WriteLine(e);
 
-            Array array = new int[10];
-            
+            //Array array = new int[10];
 
-            Human m = new Manager("Stepan", 40, 2000, 500);
-            Console.WriteLine(m);
+
+            //Human m = new Manager("Stepan", 40, 2000, 500);
+            //Console.WriteLine(m);
 
             //Manager mm = (Manager)m;
             //mm.Print();

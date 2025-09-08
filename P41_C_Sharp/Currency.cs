@@ -1,7 +1,7 @@
 ﻿
 namespace P41_C_Sharp
 {
-    internal class Currency
+    internal class Currency : IOutput
     {
         private string v1;
         private decimal v2;
@@ -12,6 +12,16 @@ namespace P41_C_Sharp
             this.v1 = v1;
             this.v2 = v2;
             this.v3 = v3;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine($"v1 - {v1}, v2 - {v2}, v3 - {v3}");
+        }
+
+        public void Show(string info)
+        {
+            Console.WriteLine($"{info} : v1 - {v1}, v2 - {v2}, v3 - {v3}");
         }
 
         public static implicit operator decimal(Currency v)

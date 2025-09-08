@@ -1,54 +1,89 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyClasses
+namespace P41_C_Sharp
 {
-    namespace Functions
+   
+    class StudentCard
     {
-        class Func
+        public string? Series { get; set; }
+
+        public int Number { get; set; }
+
+        public override string ToString()
         {
-            public static bool isEven(int a)
-            {
-                return a % 2 == 0;
-            }
+            return $"{Series} {Number}";
         }
     }
 
 
-    
-    class Student
+    class Student : IComparable
     {
-        private string? lastName;
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public DateTime BirthDay { get; set; }
+        public StudentCard? StudentCard { get; set; }
 
-        public string? LastName
+        public int CompareTo(object? obj)
         {
-            get 
-            { 
-                return lastName != null ? LastName : "No name";
-            }
-            set { lastName = value; }
+            Student? st = obj as Student;
+            return (LastName + FirstName).CompareTo(st!.LastName + st!.FirstName);
         }
 
-        private string? firstName;
-
-        public string? FirstName
+        public override string ToString()
         {
-            get { return firstName != null ? firstName : "No name"; }
-            set { firstName = value; }
+            return $"{LastName,-10} {FirstName,-8} {BirthDay.ToShortDateString()} {StudentCard}";
+        }
+    }
+
+    class Group : IEnumerable
+    {
+        Student[] students;
+        
+        public Group()
+        {
+            students = new Student[4]
+            {
+                new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
+                new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
+                new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
+                new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
+            };
         }
 
-        private DateTime date;
-
-        public DateTime BirthDate
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return date; }
-            set { date = value; }
+            return students.GetEnumerator();
         }
 
-        public int Id { get; set; }
 
+
+
+        public void Sort()
+        {
+            Array.Sort(students);
+        }
+
+
+        public void Sort(IComparer comparer)
+        {
+            Array.Sort(students, comparer);
+        }
+    }
+
+
+
+    class DateComparer : IComparer
+    {
+        public int Compare(object? x, object? y)
+        {
+            Student? st1 = x as Student;
+            Student? st2 = y as Student;
+            return DateTime.Compare(st1!.BirthDay, st2!.BirthDay);
+        }
     }
 }
