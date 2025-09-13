@@ -63,25 +63,55 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+            // 13.09.2025
+
+            Student st1 = new Student
+            {
+                LastName = "Sidorov",
+                FirstName = "Ivan",
+                BirthDay = new DateTime(2000, 10, 5),
+                StudentCard = new StudentCard
+                {
+                    Series = "AC",
+                    Number = 123456
+                }
+            };
+
+            Student st2 = (Student)st1.Clone();
+
+            st2.StudentCard.Number = 999999;
+
+            Console.WriteLine(st1);
+
+
+            StudentCard sc = new StudentCard { Series = "AA", Number = 123456 };
+            Console.WriteLine(sc);
+            StudentCard sc2 = (StudentCard)sc.Clone();
+
             // 08.09.2025
 
 
-            Group group = new Group();
-            Console.WriteLine("Group");
-            Console.WriteLine("----------------------------------------");
-            foreach(Student s in group)
-            {
-                Console.WriteLine(s);
-            }
+            //Group group = new Group();
+            //Console.WriteLine("Group");
+            //Console.WriteLine("----------------------------------------");
+            //foreach(Student s in group)
+            //{
+            //    Console.WriteLine(s);
+            //}
 
-            group.Sort(new DateComparer());
+            ////group.Sort(new DateComparer());
+            ////group.Sort(Student.FromBirthDay);
 
-            Console.WriteLine();
-            Console.WriteLine("----------------------------------------");
-            foreach (Student s in group)
-            {
-                Console.WriteLine(s);
-            }
+            ////group.Sort(new StudentCardComparer());
+            //group.Sort(Student.FromStudentCard);
+
+            //Console.WriteLine();
+            //Console.WriteLine("----------------------------------------");
+            //foreach (Student s in group)
+            //{
+            //    Console.WriteLine(s);
+            //}
+
 
             //Inter2 inter = new Inter2();
             //(inter as IAA).Show();

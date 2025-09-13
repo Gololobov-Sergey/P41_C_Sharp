@@ -8,11 +8,22 @@ using System.Threading.Tasks;
 namespace P41_C_Sharp
 {
    
-    class StudentCard
+    class StudentCard : IComparable, ICloneable
     {
         public string? Series { get; set; }
 
         public int Number { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public int CompareTo(object? obj)
+        {
+            StudentCard? sc = obj as StudentCard;
+            return (Series + Number.ToString()).CompareTo(sc!.Series + sc!.Number.ToString());
+        }
 
         public override string ToString()
         {
@@ -21,22 +32,36 @@ namespace P41_C_Sharp
     }
 
 
-    class Student : IComparable
+    class Student : IComparable, ICloneable
     {
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
         public DateTime BirthDay { get; set; }
         public StudentCard? StudentCard { get; set; }
 
+        public static IComparer FromBirthDay { get; } = new DateComparer();
+
+        public static IComparer FromStudentCard { get; } = new StudentCardComparer();
+
         public int CompareTo(object? obj)
         {
             Student? st = obj as Student;
-            return (LastName + FirstName).CompareTo(st!.LastName + st!.FirstName);
+            if(st != null)
+                return (LastName + FirstName).CompareTo(st.LastName + st.FirstName);
+
+            throw new NullReferenceException("Некорректное преобразование типов");
         }
 
         public override string ToString()
         {
             return $"{LastName,-10} {FirstName,-8} {BirthDay.ToShortDateString()} {StudentCard}";
+        }
+
+        public object Clone()
+        {
+            Student temp = (Student)this.MemberwiseClone();
+            temp.StudentCard = new StudentCard { Series = this.StudentCard!.Series, Number = this.StudentCard!.Number };
+            return temp;
         }
     }
 
@@ -84,6 +109,17 @@ namespace P41_C_Sharp
             Student? st1 = x as Student;
             Student? st2 = y as Student;
             return DateTime.Compare(st1!.BirthDay, st2!.BirthDay);
+        }
+    }
+
+
+    class StudentCardComparer : IComparer
+    {
+        public int Compare(object? x, object? y)
+        {
+            Student? st1 = x as Student;
+            Student? st2 = y as Student;
+            return st1!.StudentCard!.CompareTo(st2!.StudentCard);
         }
     }
 }
