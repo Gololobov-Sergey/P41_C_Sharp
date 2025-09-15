@@ -23,6 +23,11 @@ namespace P41_C_Sharp
             return new Point2D { X = -point.X, Y = -point.Y };
         }
 
+        override public string ToString()
+        {
+            return $"X = {X}, Y = {Y}";
+        }
+
         public static Point2D operator --(Point2D point)
         {
             point.X--;

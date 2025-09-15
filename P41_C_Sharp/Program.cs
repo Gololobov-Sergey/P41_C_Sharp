@@ -1,6 +1,7 @@
 ﻿
 
 
+using System.Collections;
 using System.Numerics;
 using System.Text;
 
@@ -53,6 +54,35 @@ namespace P41_C_Sharp
             obj.Show("Info");
         }
 
+
+        static void PrintGroup(Hashtable group)
+        {
+            // LN FN - Marks
+
+            foreach (Student key in group.Keys)
+            {
+                Console.Write($"{key.LastName} {key.FirstName} - ");
+                foreach (int item in (ArrayList)group[key])
+                {
+                    Console.Write($"{item} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+        static void AddMarkStudent(Hashtable group, string lastName, string firstName, int mark)
+        {
+            foreach (Student key in group.Keys)
+            {
+                if(key.FirstName == firstName &&  key.LastName == lastName)
+                {
+                    ((ArrayList)group[key]).Add(mark);
+                }
+            }
+        }
+
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -62,31 +92,202 @@ namespace P41_C_Sharp
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
 
+            // 15.09.2025
+
+
+            //ArrayList list = new ArrayList();
+            //list.Add(10);
+            //list.Add("mama");
+            //list.Add(new Point2D { X = 10, Y = 20 });
+
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine(list.Capacity);
+
+            //list.Add(10);
+            //list.Add("mama");
+
+            //Console.WriteLine(list.Capacity);
+
+
+            //Student st1 = new Student
+            //{
+            //    LastName = "Sidorov",
+            //    FirstName = "Ivan",
+            //    BirthDay = new DateTime(2000, 10, 5),
+            //    StudentCard = new StudentCard
+            //    {
+            //        Series = "AC",
+            //        Number = 123456
+            //    }
+            //};
+
+            //Student st2 = new Student
+            //{
+            //    LastName = "Sidorov",
+            //    FirstName = "Ivan",
+            //    BirthDay = new DateTime(2000, 10, 5),
+            //    StudentCard = new StudentCard
+            //    {
+            //        Series = "AC",
+            //        Number = 123456
+            //    }
+            //};
+
+            //Hashtable table = new Hashtable();
+            //table.Add(st1, st1);
+            //table.Add(st2, st2);
+
+
+
+            //foreach (var item in table.Keys)
+            //{
+            //    Console.WriteLine(item.GetHashCode());
+            //}
+
+
+            //SortedList sortedList = new SortedList();
+            //sortedList.Add(3, "three");
+            //sortedList.Add(1, "one");
+
+            //sortedList.Add(2, "two");
+
+            //foreach (var item in sortedList.Keys)
+            //{
+            //    Console.WriteLine(sortedList[item]);
+            //}
+
+
+
+            //Hashtable group = new Hashtable
+            //{
+            //    {
+            //        new Student
+            //        {
+            //            LastName = "Sidorov",
+            //            FirstName = "Ivan",
+            //            BirthDay = new DateTime(2000, 10, 5),
+            //            StudentCard = new StudentCard
+            //            {
+            //                Series = "AC",
+            //                Number = 123456
+            //            }
+            //        },
+            //        new ArrayList{ 8,9,8,6}
+            //    },
+
+            //    { 
+            //        new Student
+            //        {
+            //            LastName = "Ivanova",
+            //            FirstName = "Maria",
+            //            BirthDay = new DateTime(2000, 10, 3),
+            //            StudentCard = new StudentCard
+            //            {
+            //                Series = "AB",
+            //                Number = 123455
+            //            }
+            //        },
+            //        new ArrayList{ 7,9,8,10}
+            //    },
+
+            //    {
+            //        new Student
+            //        {
+            //            LastName = "Ivanov",
+            //            FirstName = "Sidr",
+            //            BirthDay = new DateTime(2002, 3, 3),
+            //            StudentCard = new StudentCard
+            //            {
+            //                Series = "AA",
+            //                Number = 123456
+            //            }
+            //        },
+            //        new ArrayList{ 6,9,8,9}
+            //    }
+            //};
+
+            //PrintGroup(group);
+            //AddMarkStudent(group, "Ivanov", "Sidr", 99);
+            //Console.WriteLine();
+            //PrintGroup(group);
+
+
+            //using (new OperationTimer("ArrayList"))
+            //{
+            //    ArrayList arrayList = new ArrayList();
+            //    for (int i = 0; i < 1000000; i++)
+            //    {
+            //        arrayList.Add(i);
+            //        int a = (int)arrayList[i];
+            //    }
+            //    arrayList = null;
+            //}
+
+            //using (new OperationTimer("List<int>"))
+            //{
+            //    List<int> list = new List<int>();
+            //    for (int i = 0; i < 1000000; i++)
+            //    {
+            //        list.Add(i);
+            //        int a = list[i];
+            //    }
+            //    list = null;
+            //}
+
+
+            List<int> list = new List<int> { 1, 2, 3, 4, 5 };
+            foreach (var item in list)
+            {
+                Console.Write(item + " ");
+            }
+
+            List<int> list1 = [];
+            List<int> list2 = new();
+
+            Dictionary<string, int> dict = new Dictionary<string, int>
+            {
+                { "one", 1 },
+                { "two", 2 },
+                { "three", 3 }
+            };
+
+            dict["four"] = 4;
+            Console.WriteLine(dict["four"]);
+
+            foreach (var item in dict.Keys)
+            {
+                Console.WriteLine($"{item} - {dict[item]}");
+            }
+
+            Dictionary<Student, List<int>> dictStudents = new();
 
             // 13.09.2025
 
-            Student st1 = new Student
-            {
-                LastName = "Sidorov",
-                FirstName = "Ivan",
-                BirthDay = new DateTime(2000, 10, 5),
-                StudentCard = new StudentCard
-                {
-                    Series = "AC",
-                    Number = 123456
-                }
-            };
+            //Student st1 = new Student
+            //{
+            //    LastName = "Sidorov",
+            //    FirstName = "Ivan",
+            //    BirthDay = new DateTime(2000, 10, 5),
+            //    StudentCard = new StudentCard
+            //    {
+            //        Series = "AC",
+            //        Number = 123456
+            //    }
+            //};
 
-            Student st2 = (Student)st1.Clone();
+            //Student st2 = (Student)st1.Clone();
 
-            st2.StudentCard.Number = 999999;
+            //st2.StudentCard.Number = 999999;
 
-            Console.WriteLine(st1);
+            //Console.WriteLine(st1);
 
 
-            StudentCard sc = new StudentCard { Series = "AA", Number = 123456 };
-            Console.WriteLine(sc);
-            StudentCard sc2 = (StudentCard)sc.Clone();
+            //StudentCard sc = new StudentCard { Series = "AA", Number = 123456 };
+            //Console.WriteLine(sc);
+            //StudentCard sc2 = (StudentCard)sc.Clone();
 
             // 08.09.2025
 

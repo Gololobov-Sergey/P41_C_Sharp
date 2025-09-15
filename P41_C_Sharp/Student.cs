@@ -63,6 +63,11 @@ namespace P41_C_Sharp
             temp.StudentCard = new StudentCard { Series = this.StudentCard!.Series, Number = this.StudentCard!.Number };
             return temp;
         }
+
+        public override int GetHashCode()
+        {
+            return (LastName + FirstName).GetHashCode();
+        }
     }
 
     class Group : IEnumerable
