@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace P41_C_Sharp
 {
    
-    class StudentCard : IComparable, ICloneable
+    class StudentCard : IComparable<StudentCard>, ICloneable
     {
         public string? Series { get; set; }
 
@@ -19,9 +19,8 @@ namespace P41_C_Sharp
             return this.MemberwiseClone();
         }
 
-        public int CompareTo(object? obj)
+        public int CompareTo(StudentCard? sc)
         {
-            StudentCard? sc = obj as StudentCard;
             return (Series + Number.ToString()).CompareTo(sc!.Series + sc!.Number.ToString());
         }
 
@@ -32,7 +31,7 @@ namespace P41_C_Sharp
     }
 
 
-    class Student : IComparable, ICloneable
+    class Student : IComparable<Student>, ICloneable
     {
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
@@ -43,9 +42,9 @@ namespace P41_C_Sharp
 
         public static IComparer FromStudentCard { get; } = new StudentCardComparer();
 
-        public int CompareTo(object? obj)
+        public int CompareTo(Student? st)
         {
-            Student? st = obj as Student;
+
             if(st != null)
                 return (LastName + FirstName).CompareTo(st.LastName + st.FirstName);
 
@@ -109,11 +108,11 @@ namespace P41_C_Sharp
 
     class DateComparer : IComparer
     {
-        public int Compare(object? x, object? y)
+        public int Compare(object? st1, object? st2)
         {
-            Student? st1 = x as Student;
-            Student? st2 = y as Student;
-            return DateTime.Compare(st1!.BirthDay, st2!.BirthDay);
+            Student? s1 = st1 as Student;
+            Student? s2 = st2 as Student;
+            return DateTime.Compare(s1!.BirthDay, s2!.BirthDay);
         }
     }
 

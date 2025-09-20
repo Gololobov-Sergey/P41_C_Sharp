@@ -155,13 +155,13 @@ namespace P41_C_Sharp
         }
     }
 
-    class Point3D : Point2D
-    {
-        public int Z { get; set; }
-        public new void Print()
-        {
-            Console.WriteLine($"X = {X}, Y = {Y}, Z = {Z}");
-            id++;
-        }
-    }
+    //class Point3D : Point2D
+    //{
+    //    public int Z { get; set; }
+    //    public new void Print()
+    //    {
+    //        Console.WriteLine($"X = {X}, Y = {Y}, Z = {Z}");
+    //        id++;
+    //    }
+    //}
 }

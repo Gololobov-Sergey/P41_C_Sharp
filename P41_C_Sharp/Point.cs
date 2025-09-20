@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P41_C_Sharp
 {
-    public partial class Point
+    public partial class Point : IComparable<Point>, ISum<Point>
     {
         int x;
         int y;
@@ -43,6 +43,19 @@ namespace P41_C_Sharp
         static public int GetCount()
         {
             return count;
+        }
+
+        public int CompareTo(Point? p)
+        {
+            double d1 = Math.Sqrt(x * x + y * y);
+            double d2 = Math.Sqrt(p!.x * p.x + p.y * p.y);
+            return d1.CompareTo(d2);
+        }
+
+        public void Sum(Point other)
+        {
+            x += other.x;
+            y += other.y;
         }
     }
 }

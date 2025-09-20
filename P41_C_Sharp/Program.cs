@@ -83,6 +83,41 @@ namespace P41_C_Sharp
         }
 
 
+        static T MaxElem<T>(T[] arr) where T : IComparable<T>
+        {
+            T max = arr[0];
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i].CompareTo(max) > 0)
+                    max = arr[i];
+            }
+            return max;
+        }
+
+
+        static T Maximym<T>(params T[] arr) where T : IComparable<T>
+        {
+            return arr.Max()!;
+        }
+
+
+        static T Sum<T>(T[] arr) where T : ISum<T>, new()
+        {
+            T sum = new T();
+            foreach (var item in arr)
+            {
+                sum.Sum(item);
+            }
+            return sum;
+        }
+
+
+        static T F<T>(int a)
+        {
+            return default;
+        }
+
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -91,6 +126,36 @@ namespace P41_C_Sharp
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
+
+            // 20.09.2025
+
+            Point p1 = new Point(10, 20, 1);
+            Point p2 = new Point(5, 15, 2);
+            Point p3 = new Point(30, 25, 3);
+
+            //Point p = Maximym(p1, p2, p3);
+            //p.Print();
+
+
+            Point[] points = new Point[] { p1, p2, p3 };
+            Point sumPoints = Sum(points);
+            sumPoints.Print();
+
+
+            int[] arr = new int[] { 1, 2, 3, 4, 5 };
+            int max = Sum(arr);
+            Console.WriteLine(max);
+
+            Point p = F<Point>(10);
+
+            //Point3D<int> p = new Point3D<int> { X = 10, Y = 20, Z = 30 };
+
+            //Point3D<Student> point3D = new();
+
+            //Console.WriteLine(typeof(Point3D<int>));
+
+            //FFF<int>.GGG<string> ggg = new FFF<int>.GGG<string>();
+
 
             // 15.09.2025
 
@@ -238,31 +303,31 @@ namespace P41_C_Sharp
             //}
 
 
-            List<int> list = new List<int> { 1, 2, 3, 4, 5 };
-            foreach (var item in list)
-            {
-                Console.Write(item + " ");
-            }
+            //List<int> list = new List<int> { 1, 2, 3, 4, 5 };
+            //foreach (var item in list)
+            //{
+            //    Console.Write(item + " ");
+            //}
 
-            List<int> list1 = [];
-            List<int> list2 = new();
+            //List<int> list1 = [];
+            //List<int> list2 = new();
 
-            Dictionary<string, int> dict = new Dictionary<string, int>
-            {
-                { "one", 1 },
-                { "two", 2 },
-                { "three", 3 }
-            };
+            //Dictionary<string, int> dict = new Dictionary<string, int>
+            //{
+            //    { "one", 1 },
+            //    { "two", 2 },
+            //    { "three", 3 }
+            //};
 
-            dict["four"] = 4;
-            Console.WriteLine(dict["four"]);
+            //dict["four"] = 4;
+            //Console.WriteLine(dict["four"]);
 
-            foreach (var item in dict.Keys)
-            {
-                Console.WriteLine($"{item} - {dict[item]}");
-            }
+            //foreach (var item in dict.Keys)
+            //{
+            //    Console.WriteLine($"{item} - {dict[item]}");
+            //}
 
-            Dictionary<Student, List<int>> dictStudents = new();
+            //Dictionary<Student, List<int>> dictStudents = new();
 
             // 13.09.2025
 
@@ -292,26 +357,26 @@ namespace P41_C_Sharp
             // 08.09.2025
 
 
-            //Group group = new Group();
-            //Console.WriteLine("Group");
-            //Console.WriteLine("----------------------------------------");
-            //foreach(Student s in group)
-            //{
-            //    Console.WriteLine(s);
-            //}
+            Group group = new Group();
+            Console.WriteLine("Group");
+            Console.WriteLine("----------------------------------------");
+            foreach (Student s in group)
+            {
+                Console.WriteLine(s);
+            }
 
-            ////group.Sort(new DateComparer());
-            ////group.Sort(Student.FromBirthDay);
+            //group.Sort(new DateComparer());
+            //group.Sort(Student.FromBirthDay);
 
-            ////group.Sort(new StudentCardComparer());
-            //group.Sort(Student.FromStudentCard);
+            group.Sort(new StudentCardComparer());
+            group.Sort(Student.FromStudentCard);
 
-            //Console.WriteLine();
-            //Console.WriteLine("----------------------------------------");
-            //foreach (Student s in group)
-            //{
-            //    Console.WriteLine(s);
-            //}
+            Console.WriteLine();
+            Console.WriteLine("----------------------------------------");
+            foreach (Student s in group)
+            {
+                Console.WriteLine(s);
+            }
 
 
             //Inter2 inter = new Inter2();
