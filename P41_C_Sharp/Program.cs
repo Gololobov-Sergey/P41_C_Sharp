@@ -4,13 +4,14 @@
 using System.Collections;
 using System.Numerics;
 using System.Text;
+using static P41_C_Sharp.Program;
 
 
 namespace P41_C_Sharp
 {
     internal class Program
     {
-        
+
 
 
         static void Func(ref int[] arr, ref int i, out int b)
@@ -75,7 +76,7 @@ namespace P41_C_Sharp
         {
             foreach (Student key in group.Keys)
             {
-                if(key.FirstName == firstName &&  key.LastName == lastName)
+                if (key.FirstName == firstName && key.LastName == lastName)
                 {
                     ((ArrayList)group[key]).Add(mark);
                 }
@@ -117,6 +118,42 @@ namespace P41_C_Sharp
             return default;
         }
 
+        static void VoidFunc()
+        {
+            Console.WriteLine("VoidFunc");
+        }
+
+        static void VoidFunc2()
+        {
+            Console.WriteLine("VoidFunc2");
+        }
+
+        static void PrintInt(int a)
+        {
+            Console.Write(a + " ");
+        }
+
+
+        static void PrintStudent(Student s)
+        {
+            Console.WriteLine($"{s.LastName, -10} {s.FirstName, -8}");
+        }
+
+        static bool big1990(Student s)
+        {
+            return s.BirthDay.Year > 2000;
+        }
+
+        static decimal FromBD(Student s)
+        {
+            return (DateTime.Now - s.BirthDay).Days;
+        }
+
+
+        public delegate void VoidDelegate();
+
+        public delegate T1 T_Delegate<T1, T2, T3>(T2 a, T3 b);
+
 
         static void Main(string[] args)
         {
@@ -127,26 +164,111 @@ namespace P41_C_Sharp
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
 
+
+            // 22.09.2025
+
+
+            //List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            //list.ForEach(PrintInt);
+
+
+            List<Student> students = new List<Student>
+            {
+                new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
+                new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
+                new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
+                new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
+            };
+
+            students.ForEach(PrintStudent);
+
+            //Console.WriteLine(students.All(big1990));
+            //Console.WriteLine(students.Count(big1990));
+            //students.RemoveAll(big1990);
+            Console.WriteLine(students.Find(s => (DateTime.Now - s.BirthDay).Days == students.Min(FromBD)));
+
+
+            //VoidDelegate del = new VoidDelegate(VoidFunc);
+            ////del();
+            //del += VoidFunc2;
+            ////del();
+
+            ////((VoidDelegate)(del.GetInvocationList()[1]))();
+
+            //foreach (VoidDelegate item in del.GetInvocationList())
+            //{
+            //    item();
+            //}
+
+
+            //Calculator calculator = new Calculator();
+            //string expr = Console.ReadLine()!;
+            //string[] parts = expr.Split(' ');
+            //// 10 + 20
+            //int a = Int32.Parse(parts[0]);
+            //int b = Int32.Parse(parts[2]);
+            //char oper = parts[1][0];
+
+            //T_Delegate<int, int, int> calc = null;
+            //calc = new T_Delegate<int, int, int>(calculator.Sum);
+            //calc += calculator.Diff;
+            //calc += new T_Delegate<int, int , int> (Calculator.Mult);
+            //calc += calculator.Div;
+
+            //foreach (CalcDelegate item in calc.GetInvocationList())
+            //{
+            //    Console.WriteLine(item(a, b));
+            //}
+
+            //Console.WriteLine();
+            //calc -= calculator.Diff;
+            //foreach (CalcDelegate item in calc.GetInvocationList())
+            //{
+            //    Console.WriteLine(item(a, b));
+            //}
+
+
+            //switch (oper)
+            //{
+            //    case '+':
+            //        calc = new CalcDelegate(calculator.Sum);
+            //        break;
+            //    case '-':
+            //        calc = calculator.Diff;
+            //        break;
+            //    case '*':
+            //        calc = new CalcDelegate(Calculator.Mult);
+            //        break;
+            //    case '/':
+            //        calc = calculator.Div;
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            //int res = calc(a, b);
+            //Console.WriteLine(res);
+
             // 20.09.2025
 
-            Point p1 = new Point(10, 20, 1);
-            Point p2 = new Point(5, 15, 2);
-            Point p3 = new Point(30, 25, 3);
+            //Point p1 = new Point(10, 20, 1);
+            //Point p2 = new Point(5, 15, 2);
+            //Point p3 = new Point(30, 25, 3);
 
-            //Point p = Maximym(p1, p2, p3);
-            //p.Print();
-
-
-            Point[] points = new Point[] { p1, p2, p3 };
-            Point sumPoints = Sum(points);
-            sumPoints.Print();
+            ////Point p = Maximym(p1, p2, p3);
+            ////p.Print();
 
 
-            int[] arr = new int[] { 1, 2, 3, 4, 5 };
-            int max = Sum(arr);
-            Console.WriteLine(max);
+            //Point[] points = new Point[] { p1, p2, p3 };
+            //Point sumPoints = Sum(points);
+            //sumPoints.Print();
 
-            Point p = F<Point>(10);
+
+            //int[] arr = new int[] { 1, 2, 3, 4, 5 };
+            //int max = Sum(arr);
+            //Console.WriteLine(max);
+
+            //Point p = F<Point>(10);
 
             //Point3D<int> p = new Point3D<int> { X = 10, Y = 20, Z = 30 };
 
@@ -357,26 +479,26 @@ namespace P41_C_Sharp
             // 08.09.2025
 
 
-            Group group = new Group();
-            Console.WriteLine("Group");
-            Console.WriteLine("----------------------------------------");
-            foreach (Student s in group)
-            {
-                Console.WriteLine(s);
-            }
+            //Group group = new Group();
+            //Console.WriteLine("Group");
+            //Console.WriteLine("----------------------------------------");
+            //foreach (Student s in group)
+            //{
+            //    Console.WriteLine(s);
+            //}
 
-            //group.Sort(new DateComparer());
-            //group.Sort(Student.FromBirthDay);
+            ////group.Sort(new DateComparer());
+            ////group.Sort(Student.FromBirthDay);
 
-            group.Sort(new StudentCardComparer());
-            group.Sort(Student.FromStudentCard);
+            //group.Sort(new StudentCardComparer());
+            //group.Sort(Student.FromStudentCard);
 
-            Console.WriteLine();
-            Console.WriteLine("----------------------------------------");
-            foreach (Student s in group)
-            {
-                Console.WriteLine(s);
-            }
+            //Console.WriteLine();
+            //Console.WriteLine("----------------------------------------");
+            //foreach (Student s in group)
+            //{
+            //    Console.WriteLine(s);
+            //}
 
 
             //Inter2 inter = new Inter2();
