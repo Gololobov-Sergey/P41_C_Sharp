@@ -67,6 +67,19 @@ namespace P41_C_Sharp
         {
             return (LastName + FirstName).GetHashCode();
         }
+
+        // #1
+        public void Exam(string date)
+        {
+            Console.WriteLine($"{LastName} {FirstName} назначено екзамен на {date}");
+        }
+
+
+        public void Exam(object? sender, ExamEventArgs args)
+        {
+            Teacher t = sender as Teacher;
+            Console.WriteLine($"{t.Name} назначив екзамен для {LastName} {FirstName} по предмету {args.Subject} на {args.Date} в аудитории {args.Room}");
+        }
     }
 
     class Group : IEnumerable
@@ -126,4 +139,65 @@ namespace P41_C_Sharp
             return st1!.StudentCard!.CompareTo(st2!.StudentCard);
         }
     }
+
+
+    public delegate void ExamDelegate(string date);
+
+    class Teacher
+    {
+
+        public string Name { get; set; }
+
+        // #1
+
+        SortedList<string, ExamDelegate> examDelegates = new SortedList<string, ExamDelegate>();
+
+        public event ExamDelegate ExamEvent
+        {
+            add 
+            {
+                Student student = value.Target as Student;
+                examDelegates.Add(student.LastName+student.FirstName, value);
+            }
+
+            remove 
+            {
+                Student student = value.Target as Student;
+                examDelegates.Remove(student.LastName + student.FirstName);
+            }
+        }
+
+
+        public void SetExam(string date)
+        {
+            foreach (var item in examDelegates.Keys)
+            {
+                if (examDelegates[item] != null)
+                    examDelegates[item](date);
+            }
+        }
+
+
+        //public EventHandler<ExamEventArgs>? ExamEvent;
+
+        //public void SetExam(string date, string subject, int room)
+        //{
+        //    ExamEventArgs args = new ExamEventArgs { Date = date, Subject = subject, Room = room };
+        //    if (ExamEvent != null)
+        //        ExamEvent(this, args);
+        //}
+
+    }
+
+
+
+    class ExamEventArgs : EventArgs
+    {
+        public string? Date { get; set; }
+
+        public string Subject { get; set; }
+
+        public int Room { get; set; }
+    }
+
 }

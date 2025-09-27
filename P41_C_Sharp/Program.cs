@@ -149,8 +149,15 @@ namespace P41_C_Sharp
             return (DateTime.Now - s.BirthDay).Days;
         }
 
+        static int FromBD(Student s1, Student s2)
+        {
+            return s1.BirthDay.CompareTo(s2.BirthDay);
+        }
+
 
         public delegate void VoidDelegate();
+
+        public delegate int CalcDelegate(int a, int b);
 
         public delegate T1 T_Delegate<T1, T2, T3>(T2 a, T3 b);
 
@@ -163,6 +170,52 @@ namespace P41_C_Sharp
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
             Console.Clear();
+
+
+            // 27.09.2025
+
+
+            CalcDelegate calc = null;
+
+            calc += delegate (int a, int b)
+            {
+                return a + b;
+            };
+
+            calc += (a, b) => a - b;
+
+            // [](){}
+            // () => { }
+
+            Predicate<DateTime> isWeekend = d => d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday;
+
+            Console.WriteLine(isWeekend(DateTime.Now));
+
+
+            //List<Student> students = new List<Student>
+            //{
+            //    new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
+            //    new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
+            //    new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
+            //    new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
+            //};
+
+            //Teacher teacher = new Teacher { Name = "Gololobov Serhiy" };
+
+            //foreach (var item in students)
+            //{
+            //    teacher.ExamEvent += item.Exam;
+            //}
+
+            //teacher.SetExam("22.09.2025");
+
+            //Console.WriteLine();
+            //teacher.ExamEvent -= students[1].Exam;
+
+            //teacher.SetExam("27.09.2025");
+
+
+
 
 
             // 22.09.2025
@@ -180,12 +233,38 @@ namespace P41_C_Sharp
                 new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
             };
 
-            students.ForEach(PrintStudent);
+            var wd = students.FindAll(s => isWeekend(s.BirthDay));
+            foreach (var item in wd)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            //students.ForEach(s=> Console.WriteLine(s));
 
             //Console.WriteLine(students.All(big1990));
             //Console.WriteLine(students.Count(big1990));
             //students.RemoveAll(big1990);
-            Console.WriteLine(students.Find(s => (DateTime.Now - s.BirthDay).Days == students.Min(FromBD)));
+            //Console.WriteLine(students.Find(s => (DateTime.Now - s.BirthDay).Days == students.Min(FromBD)));
+
+            //students.Sort((s1, s2) => s1.BirthDay.CompareTo(s2.BirthDay));
+            //students.ForEach(s => Console.WriteLine(s));
+
+            //string st = "mama";
+            //Console.WriteLine(st.Mult(5));
+
+            //Console.Write(st.PadCenter(20));
+            //Console.WriteLine(st);
+            //int a = 10;
+            //Console.WriteLine(a.isEven());
+
+            //string m = "qwert";
+            //if (m.Contains('q'))
+            //{
+
+            //}
+
+
 
 
             //VoidDelegate del = new VoidDelegate(VoidFunc);
