@@ -136,7 +136,7 @@ namespace P41_C_Sharp
 
         static void PrintStudent(Student s)
         {
-            Console.WriteLine($"{s.LastName, -10} {s.FirstName, -8}");
+            Console.WriteLine($"{s.LastName,-10} {s.FirstName,-8}");
         }
 
         static bool big1990(Student s)
@@ -162,6 +162,22 @@ namespace P41_C_Sharp
         public delegate T1 T_Delegate<T1, T2, T3>(T2 a, T3 b);
 
 
+        static double Div(int a, int b)
+        {
+            try
+            {
+                if (b == 0)
+                    throw new DivideByZeroException(nameof(b));
+                return (double)a / b;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error!");
+                throw new Exception("Error", ex);
+            }
+
+        }
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -172,24 +188,141 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+
+            // 29.09.2025
+
+
+            //using(FileStream fs = new FileStream("file.bin", FileMode.Create, FileAccess.Write, FileShare.None))
+            //{
+            //    string text = Console.ReadLine()!;
+            //    byte[] buffer = Encoding.UTF8.GetBytes(text);
+            //    fs.Write(buffer, 0, buffer.Length);
+
+            //}
+
+
+            //using(FileStream fs = new FileStream("file.bin", FileMode.Open, FileAccess.Read, FileShare.None))
+            //{
+            //    byte[] buffer = new byte[fs.Length];
+            //    fs.Read(buffer, 0, buffer.Length);
+            //    string text = Encoding.UTF8.GetString(buffer);
+            //    Console.WriteLine(text);
+            //}
+
+
+
+            //using(FileStream fs = new FileStream("file1.txt", FileMode.Create))
+            //{
+            //    using(StreamWriter writer = new StreamWriter(fs, Encoding.UTF8))
+            //    {
+            //        writer.WriteLine("Hello");
+            //        writer.WriteLine("World");
+            //    }
+            //}
+
+
+            //using(FileStream fs = new FileStream("file1.txt", FileMode.Open))
+            //{
+            //    using(StreamReader reader = new StreamReader(fs, Encoding.UTF8))
+            //    {
+            //        while (!reader.EndOfStream)
+            //        {
+            //            string line = reader.ReadLine()!;
+            //            Console.WriteLine(line);
+            //        }
+            //    }
+            //}
+
+
+            //using(FileStream fs = new FileStream("file2.bin", FileMode.Create))
+            //{
+            //    using(BinaryWriter writer = new BinaryWriter(fs, Encoding.UTF8))
+            //    {
+            //        writer.Write(123);
+            //        writer.Write(45.67);
+            //        writer.Write(true);
+            //        writer.Write("Hello");
+            //    }
+            //}
+
+            //using(FileStream fs = new FileStream("file2.bin", FileMode.Open))
+            //{
+            //    using(BinaryReader reader = new BinaryReader(fs, Encoding.UTF8))
+            //    {
+            //        int a = reader.ReadInt32();
+            //        double d = reader.ReadDouble();
+            //        bool b = reader.ReadBoolean();
+            //        string s = reader.ReadString();
+            //        Console.WriteLine($"{a} {d} {b} {s}");
+            //    }
+            //}
+
+
+            //Console.WriteLine(GC.MaxGeneration);
+            //Garbage garbage = new Garbage();
+            //Console.WriteLine(GC.GetGeneration(garbage));
+            //Console.WriteLine(GC.GetTotalMemory(false));
+            //garbage.MakeGarbage();
+            //Console.WriteLine(GC.GetGeneration(garbage));
+            //Console.WriteLine(GC.GetTotalMemory(false));
+            //GC.Collect();
+            //Console.WriteLine(GC.GetGeneration(garbage));
+            //Console.WriteLine(GC.GetTotalMemory(false));
+
+            //GC.Collect();
+            //Console.WriteLine(GC.GetGeneration(garbage));
+            //Console.WriteLine(GC.GetTotalMemory(false));
+
+
+            //unchecked
+            //{
+            //    byte b = 100;
+            //    b = (byte)(b + 200);
+            //    Console.WriteLine(b);
+            //}
+
+            //try
+            //{
+
+            //    int a = Convert.ToInt32(Console.ReadLine());
+            //    int b = Convert.ToInt32(Console.ReadLine());
+            //    int c = (int)Div(a, b);
+            //    Console.WriteLine(c);
+            //}
+            //catch (Exception ex) when (ex is DivideByZeroException || ex is FormatException)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //    Console.WriteLine(ex.StackTrace);
+            //    Console.WriteLine(ex.TargetSite);
+            //    Console.WriteLine(ex.InnerException!.Message);
+            //    Console.WriteLine(ex.Source);
+
+            //}
+            //finally
+            //{
+
+            //}
+
+
+
             // 27.09.2025
 
 
-            CalcDelegate calc = null;
+            //CalcDelegate calc = null;
 
-            calc += delegate (int a, int b)
-            {
-                return a + b;
-            };
+            //calc += delegate (int a, int b)
+            //{
+            //    return a + b;
+            //};
 
-            calc += (a, b) => a - b;
+            //calc += (a, b) => a - b;
 
-            // [](){}
-            // () => { }
+            //// [](){}
+            //// () => { }
 
-            Predicate<DateTime> isWeekend = d => d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday;
+            //Predicate<DateTime> isWeekend = d => d.DayOfWeek == DayOfWeek.Saturday || d.DayOfWeek == DayOfWeek.Sunday;
 
-            Console.WriteLine(isWeekend(DateTime.Now));
+            //Console.WriteLine(isWeekend(DateTime.Now));
 
 
             //List<Student> students = new List<Student>
@@ -225,19 +358,19 @@ namespace P41_C_Sharp
             //list.ForEach(PrintInt);
 
 
-            List<Student> students = new List<Student>
-            {
-                new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
-                new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
-                new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
-                new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
-            };
+            //List<Student> students = new List<Student>
+            //{
+            //    new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
+            //    new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
+            //    new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
+            //    new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
+            //};
 
-            var wd = students.FindAll(s => isWeekend(s.BirthDay));
-            foreach (var item in wd)
-            {
-                Console.WriteLine(item);
-            }
+            //var wd = students.FindAll(s => isWeekend(s.BirthDay));
+            //foreach (var item in wd)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
             //students.ForEach(s=> Console.WriteLine(s));
