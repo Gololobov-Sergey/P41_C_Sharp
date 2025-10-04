@@ -3,7 +3,9 @@
 
 using System.Collections;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using static P41_C_Sharp.Program;
 
 
@@ -189,6 +191,43 @@ namespace P41_C_Sharp
 
 
             // 04.10.2025
+            Console.WriteLine("Class Author:");
+            foreach (var item in typeof(Student).GetCustomAttributes(false))
+            {
+                if(item is ProgrammerAttribute)
+                    Console.WriteLine(item);
+            }
+
+            Console.WriteLine("Method Autors:");
+            foreach (var method in typeof(Student).GetProperties())
+            {
+                Console.Write($"{method.Name} - ");
+                foreach (var item in method.GetCustomAttributes(false))
+                {
+                    if (item is ProgrammerAttribute)
+                        Console.WriteLine($"{item}");
+                    else
+                        Console.WriteLine("No programmer attribute");   
+                }
+
+            }
+
+
+            //string pattern = @"^-?\d+$";
+            // +38(050)125-45-45
+            //string pattern = @"^\+38\(0\d{2}\)\d{3}-\d{2}-\d{2}$";
+            //string pattern = @"^\-?\d+(\.\d+)?$";
+            //string pattern = @"^[A-Z]\w*(\-[A-Z]\w*){0,2} [A-Z]\w*$";
+            //Regex regex = new Regex(pattern);
+
+            //while(true)
+            //{
+            //    string text = Console.ReadLine();
+            //    Console.WriteLine(regex.IsMatch(text));
+            //}
+
+
+
 
 
             //DirectoryInfo dir = new DirectoryInfo(".");
@@ -230,12 +269,18 @@ namespace P41_C_Sharp
             //file.Delete();
 
 
-            DirectoryInfo dir = new DirectoryInfo("C:\\");
-            var dirs = dir.GetDirectories().Select(s=>s.Name).ToList();
-            var files = dir.GetFiles().Select(f=>f.Name).ToList();
-            dirs.AddRange(files);
+            //DirectoryInfo dir = new DirectoryInfo("C:\\");
+            //while(true)
+            //{
+            //    var dirs = dir.GetDirectories().Select(s => s.Name).ToList();
+            //    var files = dir.GetFiles().Select(f => f.Name).ToList();
+            //    dirs.AddRange(files);
 
-            int c = ConsoleMenu.SelectVertical(HPosition.Left, VPosition.Top, HorizontalAlignment.Right, dirs);
+            //    int c = ConsoleMenu.SelectVertical(HPosition.Left, VPosition.Top, HorizontalAlignment.Right, dirs);
+
+            //    dir = new DirectoryInfo(dirs[c]);
+            //}
+
 
             // 29.09.2025
 

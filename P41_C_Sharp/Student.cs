@@ -30,9 +30,10 @@ namespace P41_C_Sharp
         }
     }
 
-
+    [Programmer]
     class Student : IComparable<Student>, ICloneable
     {
+        [Programmer]
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
         public DateTime BirthDay { get; set; }
@@ -42,6 +43,8 @@ namespace P41_C_Sharp
 
         public static IComparer FromStudentCard { get; } = new StudentCardComparer();
 
+
+        [Programmer("Pupkin V.V", "2025.10.01")]
         public int CompareTo(Student? st)
         {
 
