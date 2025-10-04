@@ -188,6 +188,54 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+            // 04.10.2025
+
+
+            //DirectoryInfo dir = new DirectoryInfo(".");
+            //Console.WriteLine(dir.FullName);
+            //var files = dir.GetFiles();
+            //foreach (var item in files)
+            //{
+            //    if((item.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden)
+            //    {
+            //        Console.WriteLine($"{item.Name,20} {item.Length,20} {item.Attributes,20}");
+            //    }
+
+            //}
+
+            //DirectoryInfo dir = new DirectoryInfo("C:\\Test");
+            //if(!dir.Exists)
+            //    dir.Create();
+            //dir.CreateSubdirectory("Test1");
+
+
+            //FileInfo file = new FileInfo("C:\\Test\\test.txt");
+            //if(file.Exists)
+            //{
+            //    Console.WriteLine(File.ReadAllText(file.FullName));
+            //}
+
+            //StreamWriter sw = File.CreateText("C:\\Test\\test2.txt");
+            //sw.Write("Hello dfghdfh");
+            //sw.Close();
+
+            //var dir = Directory.GetLogicalDrives();
+            //foreach (var item in dir)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+            //FileInfo file = new FileInfo("C:\\Test\\test.txt");
+            //file.Delete();
+
+
+            DirectoryInfo dir = new DirectoryInfo("C:\\");
+            var dirs = dir.GetDirectories().Select(s=>s.Name).ToList();
+            var files = dir.GetFiles().Select(f=>f.Name).ToList();
+            dirs.AddRange(files);
+
+            int c = ConsoleMenu.SelectVertical(HPosition.Left, VPosition.Top, HorizontalAlignment.Right, dirs);
 
             // 29.09.2025
 

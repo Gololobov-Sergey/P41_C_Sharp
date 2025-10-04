@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P41_C_Sharp
 {
-    static class Extemtion
+    static class Extention
     {
         public static string Mult(this string str, int n)
         {
