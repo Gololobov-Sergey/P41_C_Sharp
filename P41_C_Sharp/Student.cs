@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace P41_C_Sharp
 {
    
-    class StudentCard : IComparable<StudentCard>, ICloneable
+    public class StudentCard : IComparable<StudentCard>, ICloneable
     {
         public string? Series { get; set; }
 
@@ -31,8 +31,10 @@ namespace P41_C_Sharp
     }
 
     [Programmer]
-    class Student : IComparable<Student>, ICloneable
+    public class Student : IComparable<Student>, ICloneable
     {
+        int id = 99;
+
         [Programmer]
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
@@ -194,7 +196,7 @@ namespace P41_C_Sharp
 
 
 
-    class ExamEventArgs : EventArgs
+    public class ExamEventArgs : EventArgs
     {
         public string? Date { get; set; }
 

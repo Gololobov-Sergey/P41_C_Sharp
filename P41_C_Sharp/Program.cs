@@ -4,9 +4,12 @@
 using System.Collections;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 using static P41_C_Sharp.Program;
+using System.Xml;
 
 
 namespace P41_C_Sharp
@@ -180,6 +183,29 @@ namespace P41_C_Sharp
 
         }
 
+
+        static void PrintNode(XmlNode node)
+        {
+            Console.WriteLine($"Type = {node.NodeType}, Name = {node.Name}, Value - {node.Value}");
+
+            if(node.Attributes != null)
+            {
+                foreach (XmlAttribute item in node.Attributes)
+                {
+                    Console.WriteLine($"Type = {item.NodeType}, Name = {item.Name}, Value - {item.Value}");
+                }
+            }
+
+            if(node.HasChildNodes)
+            {
+                foreach (XmlNode item in node.ChildNodes)
+                {
+                    PrintNode(item);
+                }
+            }
+        }
+
+
         static void Main(string[] args)
         {
             Console.Title = "P41 C#";
@@ -190,37 +216,152 @@ namespace P41_C_Sharp
             Console.Clear();
 
 
+            // 06.10.2025
+
+
+            //XmlTextWriter xml = new XmlTextWriter("Computers.xml", Encoding.UTF8);
+            //xml.Formatting = Formatting.Indented;
+            //xml.WriteStartDocument();
+            //xml.WriteStartElement("Computers");
+            //xml.WriteStartElement("Computer");
+            //xml.WriteAttributeString("type", "Home");
+            //xml.WriteElementString("CPU", "Intel Core i13");
+            //xml.WriteElementString("MotherBoard", "MSI");
+            //xml.WriteElementString("RAM", "32Gb");
+            //xml.WriteElementString("DD", "SSD 1Tb");
+            //xml.WriteEndElement();
+            //xml.WriteEndElement();
+            //xml.Close();
+
+
+
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load("Computers.xml");
+            ////PrintNode(doc.DocumentElement);
+
+            //XmlNode root = doc.DocumentElement;
+
+            //XmlNode comp = doc.CreateElement("Computer");
+
+            //XmlNode node1 = doc.CreateElement("CPU");
+            //XmlNode node2 = doc.CreateElement("MotherBoard");
+            //XmlNode node3 = doc.CreateElement("RAM");
+            //XmlNode node4 = doc.CreateElement("DD");
+
+            //XmlNode text1 = doc.CreateTextNode("AMD Rizen 11");
+            //XmlNode text2 = doc.CreateTextNode("ASUS");
+            //XmlNode text3 = doc.CreateTextNode("16Gb");
+            //XmlNode text4 = doc.CreateTextNode("HDD 256Gb");
+
+            //XmlAttribute attr = doc.CreateAttribute("type");
+            //attr.Value = "Game";
+
+            //node1.AppendChild(text1);
+            //node2.AppendChild(text2);
+            //node3.AppendChild(text3);
+            //node4.AppendChild(text4);
+
+
+            //comp.Attributes.Append(attr);
+            //comp.AppendChild(node1);
+            //comp.AppendChild(node2);
+            //comp.AppendChild(node3);
+            //comp.AppendChild(node4);
+
+            //root.AppendChild(comp);
+
+            //doc.Save("Computers2.xml");
+
+
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load("Computers2.xml");
+
+            //List<Computer> computers = new List<Computer>();    
+
+            //foreach (XmlNode item in doc.DocumentElement)
+            //{
+            //    Computer comp = new Computer();
+            //    comp.Type = item.Attributes["type"].Value;
+            //    comp.CPU = item["CPU"].InnerText;
+            //    comp.MotherBoard = item["MotherBoard"].InnerText;
+            //    comp.RAM = item["RAM"].InnerText;
+            //    comp.DiscDriver = item["DD"].InnerText;
+            //    computers.Add(comp);
+            //}
+
+
+            //var compGame = computers.Where(c => c.Type == "Game").ToList();
+            //foreach (var item in compGame)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=20251003");
+            PrintNode(doc.DocumentElement);
+
+
+            //List<Student> students = new List<Student>
+            //{
+            //    new Student { LastName="Sidorov", FirstName="Ivan",   BirthDay=new DateTime(2000,10,5), StudentCard=new StudentCard { Series="AC", Number=123456 } },
+            //    new Student { LastName="Ivanova", FirstName="Maria",  BirthDay=new DateTime(2000,10,3), StudentCard=new StudentCard { Series="AB", Number=123455 } },
+            //    new Student { LastName="Ivanov",  FirstName="Sidr",   BirthDay=new DateTime(2002,3,3),  StudentCard=new StudentCard { Series="AA", Number=123456 } },
+            //    new Student { LastName="Smirnov", FirstName="Sergey", BirthDay=new DateTime(1999,4,4),  StudentCard=new StudentCard { Series="AB", Number=123466 } }
+            //};
+
+            ////Student st = new Student { LastName = "Sidorov", FirstName = "Ivan", BirthDay = new DateTime(2000, 10, 5), StudentCard = new StudentCard { Series = "AC", Number = 123456 } };
+
+            //XmlSerializer xml = new XmlSerializer(typeof(List<Student>));
+
+            //using (Stream s = File.Create("students.xml"))
+            //{
+            //    xml.Serialize(s, students);
+            //}
+
+
+            //XmlSerializer xml = new XmlSerializer(typeof(Student));
+            //Student st = null;
+            //using (Stream s = File.OpenRead("student.xml"))
+            //{
+            //    st = (Student)xml.Deserialize(s);
+            //}
+
+            //Console.WriteLine(st);
+
             // 04.10.2025
-            Console.WriteLine("Class Author:");
-            foreach (var item in typeof(Student).GetCustomAttributes(false))
-            {
-                if(item is ProgrammerAttribute)
-                    Console.WriteLine(item);
-            }
+            //Console.WriteLine("Class Author:");
+            //foreach (var item in typeof(Student).GetCustomAttributes(false))
+            //{
+            //    if(item is ProgrammerAttribute)
+            //        Console.WriteLine(item);
+            //}
 
-            Console.WriteLine("Method Autors:");
-            foreach (var method in typeof(Student).GetProperties())
-            {
-                Console.Write($"{method.Name} - ");
-                foreach (var item in method.GetCustomAttributes(false))
-                {
-                    if (item is ProgrammerAttribute)
-                        Console.WriteLine($"{item}");
-                    else
-                        Console.WriteLine("No programmer attribute");   
-                }
+            //Console.WriteLine("Method Autors:");
+            //foreach (var method in typeof(Student).GetProperties())
+            //{
+            //    Console.Write($"{method.Name} - ");
+            //    foreach (var item in method.GetCustomAttributes(false))
+            //    {
+            //        if (item is ProgrammerAttribute)
+            //            Console.WriteLine($"{item}");
+            //        else
+            //            Console.WriteLine("No programmer attribute");   
+            //    }
 
-            }
+            //}
 
 
             //string pattern = @"^-?\d+$";
             // +38(050)125-45-45
             //string pattern = @"^\+38\(0\d{2}\)\d{3}-\d{2}-\d{2}$";
             //string pattern = @"^\-?\d+(\.\d+)?$";
+            //string pattern = @"^(1[0-2]|[1-9])$";
+
             //string pattern = @"^[A-Z]\w*(\-[A-Z]\w*){0,2} [A-Z]\w*$";
             //Regex regex = new Regex(pattern);
 
-            //while(true)
+            //while (true)
             //{
             //    string text = Console.ReadLine();
             //    Console.WriteLine(regex.IsMatch(text));
